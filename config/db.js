@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 
 const connectDB = async () => {
+  const mongo_uri =
+    "mongodb+srv://deepsk3697:sOSiglmkvRYLQxod@cluster0.mdvtrct.mongodb.net/?retryWrites=true&w=majority";
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect(mongo_uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

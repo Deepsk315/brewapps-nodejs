@@ -9,12 +9,14 @@ dotenv.config();
 
 const app = express();
 
+const port = 5099;
+
 connectDB();
 app.use(cors());
 app.use(express.json());
 
 app.use("/api", libraryRoutes); //library routes
 
-app.listen(process.env.PORT, function () {
-  console.log(`server started in port: ${process.env.PORT}`);
+app.listen(port, function () {
+  console.log(`server started in port: ${port}`);
 });
