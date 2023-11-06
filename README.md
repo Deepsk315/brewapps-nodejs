@@ -68,5 +68,5 @@
 
 ## Note
 
-- The system doesn't use the MongoDB object id `_id` for editing, deleting, or getting data. Instead, a `book_id` is used as a user-friendly option.
+- The project doesn't use the MongoDB object id `_id` for editing, deleting, or getting data. Instead, a `book_id` is used as a user-friendly option.
 - The `book_id` will be generated at the time of creating a new book. It will consider the last `book_id` number and increment the number for the new book.
