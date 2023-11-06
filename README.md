@@ -14,25 +14,16 @@
    git clone https://github.com/Deepsk315/brewapps-nodejs.git
    ```
 
-2. Install PM2 Globally by:
-
-   ```
-   npm install -g pm2
-   ```
-
-3. Install all npm modules once you're inside the directory after cloning the repository:
+2. Install all npm modules once you're inside the directory after cloning the repository:
 
    ```
    npm install
    ```
 
-4. To start the application, use:
+3. To start the application, use:
    ```
    npm start
    ```
-   It will start the PM2 process. Use `pm2 logs 0` to see console errors. If you're able to see "server started" logs with the MongoDB connection established, things are working fine.
-   `pm2 stop 0` to stop the server.
-   `pm2 delete 0` to terminate the server
 
 ## API List
 
