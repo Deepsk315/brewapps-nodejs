@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"npm install",
     "start": "pm2 start app.js --name BrewApp --watch"
   },
   "author": "",
