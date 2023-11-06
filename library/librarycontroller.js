@@ -46,6 +46,43 @@ export const addBook = async (req, res) => {
   }
 };
 
+export const editBook = async (req, res) => {
+  const { title, author, summary } = req.body;
+  const { id } = req.params;
+
+  if (!id || id === "") {
+    return res
+      .status(404)
+      .json({ message: "Book ID is required for updating" });
+  }
+
+  try {
+    const book = await Library.findOne({ book_id: id });
+
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    if (title) {
+      book.title = title;
+    }
+    if (author) {
+      book.author = author;
+    }
+    if (summary) {
+      book.summary = summary;
+    }
+
+    const updatedBook = await book.save();
+    res.status(200).json({ message: "Book updated successfully", updatedBook });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Couldn't Update due to some issues", error });
+  }
+};
+
 export const getBookList = async (req, res) => {
   const booksCntQry = Library.count();
   const booksQry = Library.find();
