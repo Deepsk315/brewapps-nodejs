@@ -56,6 +56,15 @@ export const editBook = async (req, res) => {
       .json({ message: "Book ID is required for updating" });
   }
 
+  if (!title && !author && !summary) {
+    return res
+      .status(404)
+      .json({
+        message:
+          "At least one field Title, Author or Summary is required for updating",
+      });
+  }
+
   try {
     const book = await Library.findOne({ book_id: id });
 
@@ -133,7 +142,7 @@ export const getSingleBookData = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "Book id might br wrong or is unavailable" });
+        .json({ message: `Book with id : ${id} is unavailable` });
     }
   } catch (error) {
     console.log("something went wrong : ", error);
@@ -141,5 +150,36 @@ export const getSingleBookData = async (req, res) => {
       message: "Something went wrong , please check the error message : ",
       error,
     });
+  }
+};
+
+export const deleteBook = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id || id === "") {
+    return res
+      .status(404)
+      .json({ message: "Book ID is required for deleting" });
+  }
+
+  try {
+    const book = await Library.findOne({ book_id: id });
+
+    if (book) {
+      const deletedBook = await Library.findOneAndDelete({ book_id: id });
+      if (deletedBook) {
+        return res
+          .status(200)
+          .json({ message: `Book ${book.title} deleted successfully` });
+      } else {
+        return res.status(404).json({ message: "Book not found" });
+      }
+    } else {
+      return res.status(404).json({ message: "Book not found" });
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Failed to delete the book", error: error.message });
   }
 };
