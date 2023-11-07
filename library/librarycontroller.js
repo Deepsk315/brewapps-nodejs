@@ -19,7 +19,6 @@ export const addBook = async (req, res) => {
     const bookExists = await Library.findOne({ title: title });
 
     if (bookExists) {
-      console.log(bookExists);
       return res.status(404).json({
         message:
           "Book Title Name already exists , Please choose different title",
@@ -57,12 +56,10 @@ export const editBook = async (req, res) => {
   }
 
   if (!title && !author && !summary) {
-    return res
-      .status(404)
-      .json({
-        message:
-          "At least one field Title, Author or Summary is required for updating",
-      });
+    return res.status(404).json({
+      message:
+        "At least one field Title, Author or Summary is required for updating",
+    });
   }
 
   try {

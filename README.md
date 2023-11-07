@@ -6,6 +6,11 @@
 - Node.js
 - MongoDB
 
+## NODE & NPM VERSION
+
+-> 14.17.4 (Node)
+-> 6.14.14 (NPM)
+
 ## Getting Started
 
 1. Clone the project by using:
